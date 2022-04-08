@@ -1,12 +1,14 @@
 # Smart_Home
 ### Arduino Mega Projesi
 Projede Proteus programında Arduino kartı kullanarak akıllı ev sistemi oluşturulmaktadır. Sistem içerisinde;
+
 • Yangın alarmı,
+
 • Hareket algılayan ışık sistemi,
+
 • Dijital termometre,
+
 • Kilit sistemi bulunmaktadır.
-
-
 
 # Kaynakça
 1 - https://www.youtube.com/watch?v=UpSipPbDRVY
