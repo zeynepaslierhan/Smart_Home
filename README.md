@@ -26,3 +26,5 @@ Projede Proteus programında Arduino kartı kullanarak akıllı ev sistemi oluş
 7 - https://www.circuitstoday.com/proteus-software-introduction
 
 8 - https://www.elektrikport.com/teknik-kutuphane/proteus-ile-arduino-simulasyonu/12005#ad-image-0
+
+9 - https://www.arduino.cc/reference/en/
