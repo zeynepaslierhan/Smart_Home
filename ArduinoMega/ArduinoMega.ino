@@ -17,15 +17,14 @@ LiquidCrystal lcd(6,9,5,4,3,2);//LCD üzerinde kullanılanlarla nesne oluşturul
 #include <Keypad.h>//keypad için fonksiyon kütüphanesi
 const byte rows = 4;//keypad'in sütun ve satır sayıları
 const byte cols = 3;
-char keyMap [rows] [cols] = {
-
+char keyMap[rows][cols] = {
   {'1', '2', '3'},
   {'4', '5', '6'},
   {'7', '8', '9'},
   {'*', '0', '#'}
 };
 
-byte rowPins [rows] = {13, 12, 11, 10}; //pins of the keypad
+byte rowPins [rows] = {13,12,11,10}; //pins of the keypad
 byte colPins [cols] = {14, 15, 16};
 
 Keypad myKeypad = Keypad( makeKeymap(keyMap), rowPins, colPins, rows, cols);
@@ -42,7 +41,6 @@ void setup() {
   //hareket sensörü kurulumları
   pinMode(sensor,INPUT);
   pinMode(tetik,OUTPUT);
-  Serial.println("Hareket sensörü çalışıyor..");
   delay(10);
 
   //dijital termometre kurulumları
@@ -59,9 +57,41 @@ void setup() {
 
 void loop() {
   
+  //kilit sistemi için
+  Serial.println("HOSGELDINIZ");
+  Serial.println("SIFRE GIRINIZ:");
+  
+  while(pozisyon!=4){
+        
+      char whichKey = myKeypad.getKey(); //define which key is pressed with getKey
+      
+      if(whichKey =='*'||whichKey=='#'){//define invalid keys
+        pozisyon=0;
+        setLocked(true);
+        Serial.println("HATALI!");
+        delay(1000);
+        break;
+      }
+      if(whichKey==password[pozisyon]){
+        pozisyon++;
+      }
+      if(pozisyon == 4){
+        setLocked (false);
+        Serial.println("*** Verified ***");
+        delay(3000);
+        Serial.println("Zeynep ile Hazar");
+        Serial.println("Kapi Acildi");
+        delay(7000);
+      }else{
+        setLocked(true);
+        Serial.println("HATALI!");
+       }
+       delay(1000);
+  }
+
+  
   //hareket sensörü için
   sensorValue = digitalRead(sensor);
-  Serial.println("Sensor Value="+String(sensorValue));
   delay(100);
 
   if (sensorValue == 1) {
@@ -82,42 +112,7 @@ void loop() {
   lcd.print(" derece");
   delay(1000);
 
-  //kilit sistemi için
-  char whichKey = myKeypad.getKey(); //define which key is pressed with getKey
-
-  lcd.setCursor(0, 0);
-  lcd.print("    HOSGELDINIZ");
-  lcd.setCursor(0, 1);
-  lcd.print(" SIFRE GİRİNİZ:");
-
-  if(whichKey == '*' || whichKey == '#'){//define invalid keys
-    pozisyon=0;
-    setLocked (true);
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print(" HATALI!");
-    delay(1000);
-    lcd.clear();
-  }
-  if(whichKey == password [pozisyon]){
-    pozisyon ++;
-  }
-  if(pozisyon == 4){
-    setLocked (false);
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("*** Verified ***");
-    delay(3000);
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("Zeynep ile Hazar");
-    lcd.setCursor(0, 1);
-    lcd.print("Kapi Acildi");
-    delay(7000);
-    lcd.clear();
-  }
-  delay(100);
-
+  
 }
 
 //kilit sistemi için kilit fonksiyonu
