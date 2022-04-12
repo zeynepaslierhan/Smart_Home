@@ -19,6 +19,8 @@ float temp_sensorValue = 0;
 LiquidCrystal lcd(6,9,5,4,3,2);//LCD üzerinde kullanılanlarla nesne oluşturuldu(sırayla rs,e..)
 
 //kilit sistemi
+
+boolean control=1; 
 #include <Keypad.h>//keypad için fonksiyon kütüphanesi
 const byte rows = 4;//keypad'in sütun ve satır sayıları
 const byte cols = 3;
@@ -103,6 +105,36 @@ void loop() {
   lcd.print(TempCel);
   lcd.print(" derece");
   delay(100);
+
+  //kilit sistemi
+  int l;
+  if(control){
+      Serial.println("PASSWORD:");
+      control=0;
+    }
+  char code=myKeypad.getKey();
+  if(code!=NO_KEY){
+    
+    
+    for(l=0;l<1;l++){
+      Serial.print("*");
+      //keypress
+    }
+    if(code==password[pozisyon]){
+      pozisyon++;
+      if(pozisyon==4){
+        setLocked(false);
+        pozisyon=0;
+        control=1;
+        Serial.println(" ");
+      }
+    }else{
+      Serial.println("");
+      Serial.println("HATALI!");
+      pozisyon=0;
+      control=1;
+    }
+  }
 
   
 }
