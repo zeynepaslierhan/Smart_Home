@@ -18,3 +18,5 @@ Projede Proteus programında Arduino kartı kullanarak akıllı ev sistemi oluş
 3 - https://lezzetlirobottarifleri.com/
 
 4 - https://www.youtube.com/playlist?list=PLFOSdDqm35feuJXiWzI64TAmnLJ0y29-W
+
+5 - https://www.youtube.com/watch?v=M_S2Z5XJuUE
