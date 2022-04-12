@@ -1,0 +1,1 @@
+Bu proje için gereken tüm eklentiler burada uygulamalarına göre gruplandırılmıştır.
