@@ -11,11 +11,9 @@ boolean pir_sensorValue = 0;
 int     tetik       = 7;
 
 //dijital termometre için değişkenler
-const int lm35 = A0;
+const int lm35 = A1;
 
-float voltaj_deger = 0;
-float sicaklik = 0;
-int gelen_veri = 0;
+float temp_sensorValue = 0;
 
 #include <LiquidCrystal.h> //LCD için fonksiyon kütüphanesi
 LiquidCrystal lcd(6,9,5,4,3,2);//LCD üzerinde kullanılanlarla nesne oluşturuldu(sırayla rs,e..)
@@ -57,7 +55,7 @@ void setup() {
 
   //dijital termometre kurulumları
   lcd.begin(16, 2);//16 karakterlik 2 satır LCD kullanılıyor. 
-  pinMode(lm35, INPUT);
+  pinMode(lm35,INPUT);
 
   //kilit sistemi kurulumları
   pinMode(redLED, OUTPUT);
@@ -95,14 +93,14 @@ void loop() {
 
   //dijital termometre için
   
-  gelen_veri = analogRead(lm35);
-  voltaj_deger = (gelen_veri / 1023.0) * 5000;
-  sicaklik = voltaj_deger / 10.0;
+  temp_sensorValue=analogRead(lm35);
+  float TempCel = temp_sensorValue*(5.0/1023.0)*100;// Getting the celsius value from 10 bit analog value
   lcd.clear();
   lcd.home();
+  lcd.setCursor(0,0);
   lcd.print("sicaklik = ");
-  lcd.setCursor(0, 1);
-  lcd.print(sicaklik);
+  lcd.setCursor(0,1);
+  lcd.print(TempCel);
   lcd.print(" derece");
   delay(100);
 
