@@ -1,4 +1,5 @@
 # Smart_Home
+![Simulation](https://raw.githubusercontent.com/zeynepaslierhanSmart_Home/Simulator/images/Simulation.png)
 
 ### Arduino Mega Projesi
 Projede Proteus programında Arduino kartı kullanarak akıllı ev sistemi oluşturulmaktadır. Sistem içerisinde;
