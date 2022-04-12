@@ -1,4 +1,4 @@
 # Düzenlemeler
-1 - arduino derlemiyorsa "preferences" da compilation seçili yap
+1 - File -> preferences -> compilation 
 
-2 - hareket sensörü ayarı -> hex dosyası
+2 - Tools -> board -> arduıno mega

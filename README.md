@@ -15,12 +15,10 @@ Projede Proteus programında Arduino kartı kullanarak akıllı ev sistemi oluş
 
 2 - http://arduinoturkiye.com/arduino-mega-2560-nedir/
 
-3 - http://arduinoturkiye.com/kategori/arduinoya-giris/
+3 - https://lezzetlirobottarifleri.com/
 
-4 - https://www.bilisimkonulari.com/proteus-isis-ve-ares-kullanimi-resimli-anlatim.html
+4 - https://www.circuitstoday.com/proteus-software-introduction
 
-5 - https://www.circuitstoday.com/proteus-software-introduction
+5 - https://www.elektrikport.com/teknik-kutuphane/proteus-ile-arduino-simulasyonu/12005#ad-image-0
 
-6 - https://www.elektrikport.com/teknik-kutuphane/proteus-ile-arduino-simulasyonu/12005#ad-image-0
-
-7 - https://www.youtube.com/playlist?list=PLFOSdDqm35feuJXiWzI64TAmnLJ0y29-W
+6 - https://www.youtube.com/playlist?list=PLFOSdDqm35feuJXiWzI64TAmnLJ0y29-W
