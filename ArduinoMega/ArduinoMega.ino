@@ -1,6 +1,13 @@
-//hareket sensörü için değişkenler
+//yangın sensörü için değişkenler
+int buzzer=19;
+int pinkLed=18;
+int alev_sensoru= A0;
+boolean fl_sensorValue = 0;
+
+
+//hareket sensörü için değişkenlerz
 int     sensor      = 8;
-boolean sensorValue = 0;
+boolean pir_sensorValue = 0;
 int     tetik       = 7;
 
 //dijital termometre için değişkenler
@@ -37,6 +44,11 @@ int pozisyon = 0;//keypad için başlangıç
 
 void setup() {
   Serial.begin(9600);//seri haberleşmeyi başlatır.
+
+  //yangın sensörü
+  pinMode(buzzer,OUTPUT);
+  pinMode(pinkLed,OUTPUT);
+  delay(10);
   
   //hareket sensörü kurulumları
   pinMode(sensor,INPUT);
@@ -48,59 +60,41 @@ void setup() {
   pinMode(lm35, INPUT);
 
   //kilit sistemi kurulumları
-  lcd.begin(16, 2);
   pinMode(redLED, OUTPUT);
   pinMode(greenLED, OUTPUT);
   setLocked (true);
+  delay(10);
 
 }
 
 void loop() {
+
+  //yangın alarmı için
+  fl_sensorValue=digitalRead(alev_sensoru);
   
-  //kilit sistemi için
-  Serial.println("HOSGELDINIZ");
-  Serial.println("SIFRE GIRINIZ:");
-  
-  while(pozisyon!=4){
-        
-      char whichKey = myKeypad.getKey(); //define which key is pressed with getKey
-      
-      if(whichKey =='*'||whichKey=='#'){//define invalid keys
-        pozisyon=0;
-        setLocked(true);
-        Serial.println("HATALI!");
-        delay(1000);
-        break;
-      }
-      if(whichKey==password[pozisyon]){
-        pozisyon++;
-      }
-      if(pozisyon == 4){
-        setLocked (false);
-        Serial.println("*** Verified ***");
-        delay(3000);
-        Serial.println("Zeynep ile Hazar");
-        Serial.println("Kapi Acildi");
-        delay(7000);
-      }else{
-        setLocked(true);
-        Serial.println("HATALI!");
-       }
-       delay(1000);
+  if(fl_sensorValue){
+    digitalWrite(pinkLed,HIGH);
+    digitalWrite(buzzer,HIGH);
+  }else{
+    digitalWrite(pinkLed,LOW);
+    digitalWrite(buzzer,LOW);
   }
+   delay(100);
 
   
   //hareket sensörü için
-  sensorValue = digitalRead(sensor);
-  delay(100);
+  pir_sensorValue = digitalRead(sensor);
 
-  if (sensorValue == 1) {
+  if (pir_sensorValue == 1) {
     digitalWrite(tetik, HIGH);
   }else{
     digitalWrite(tetik, LOW);
   }
+  delay(100);
+
 
   //dijital termometre için
+  
   gelen_veri = analogRead(lm35);
   voltaj_deger = (gelen_veri / 1023.0) * 5000;
   sicaklik = voltaj_deger / 10.0;
@@ -110,7 +104,7 @@ void loop() {
   lcd.setCursor(0, 1);
   lcd.print(sicaklik);
   lcd.print(" derece");
-  delay(1000);
+  delay(100);
 
   
 }
