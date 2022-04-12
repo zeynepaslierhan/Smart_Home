@@ -5,8 +5,8 @@ int     tetik       = 7;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(sensor, INPUT);
-  pinMode(tetik, OUTPUT);
+  pinMode(sensor,INPUT);
+  pinMode(tetik,OUTPUT);
   Serial.println("Started...");
   delay(10);
 
