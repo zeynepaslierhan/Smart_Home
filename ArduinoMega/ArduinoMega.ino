@@ -42,6 +42,8 @@ Keypad myKeypad = Keypad( makeKeymap(keyMap), rowPins, colPins, rows, cols);
 char* password ="1234"; //varsayılan şifre
 int pozisyon = 0;//keypad için başlangıç
 
+
+
 void setup() {
   Serial.begin(9600);//seri haberleşmeyi başlatır.
 
@@ -68,6 +70,40 @@ void setup() {
 }
 
 void loop() {
+  
+  //kilit sistemi
+  int l;
+  if(control){
+    Serial.println("PASSWORD:");
+    control=0;
+    setLocked(true);
+  }
+  char code=myKeypad.getKey();
+  if(code!=NO_KEY){
+    for(l=0;l<1;l++){
+      Serial.print("*");
+      //keypress
+    }
+    if(code==password[pozisyon]){
+      pozisyon++;
+      if(pozisyon==4){
+        Serial.println("");
+        Serial.println("HOSGELDINIZ");
+        setLocked(false);
+        delay(1000);
+        pozisyon=0;
+        control=1;
+        Serial.println("");
+     
+      }
+    }else{
+      Serial.println("");
+      Serial.println("HATALI");
+      setLocked(true);
+      pozisyon=0;
+      control=1;
+    }
+  }
 
   //yangın alarmı için
   fl_sensorValue=digitalRead(alev_sensoru);
@@ -79,8 +115,6 @@ void loop() {
     digitalWrite(pinkLed,LOW);
     digitalWrite(buzzer,LOW);
   }
-   delay(100);
-
   
   //hareket sensörü için
   pir_sensorValue = digitalRead(sensor);
@@ -90,55 +124,19 @@ void loop() {
   }else{
     digitalWrite(tetik, LOW);
   }
-  delay(100);
 
 
   //dijital termometre için
   
   temp_sensorValue=analogRead(lm35);
-  float TempCel =temp_sensorValue*(5.0/1023.0)*100;// Getting the celsius value from 10 bit analog value
+  float TempCel =temp_sensorValue*(500/1023.0);// Getting the celsius value from 10 bit analog value
   lcd.clear();
   lcd.home();
-  lcd.setCursor(0,0);
   lcd.print("sicaklik = ");
   lcd.setCursor(0,1);
   lcd.print(TempCel);
-  lcd.print(" derece");
+  lcd.print(" C");
   delay(100);
-
-  //kilit sistemi
-  int l;
-  if(control){
-      Serial.println("PASSWORD:");
-      control=0;
-      setLocked(true);
-    }
-  char code=myKeypad.getKey();
-  if(code!=NO_KEY){
-    
-    
-    for(l=0;l<1;l++){
-      Serial.print("*");
-      //keypress
-    }
-    if(code==password[pozisyon]){
-      pozisyon++;
-      if(pozisyon==4){
-        setLocked(false);
-        pozisyon=0;
-        control=1;
-        Serial.println(" ");
-      }
-    }else{
-      Serial.println("");
-      Serial.println("HATALI!");
-      setLocked(true);
-      pozisyon=0;
-      control=1;
-    }
-  }
-
-  
 }
 
 //kilit sistemi için kilit fonksiyonu
