@@ -96,7 +96,7 @@ void loop() {
   //dijital termometre için
   
   temp_sensorValue=analogRead(lm35);
-  float TempCel = temp_sensorValue*(5.0/1023.0)*100;// Getting the celsius value from 10 bit analog value
+  float TempCel =temp_sensorValue*(5.0/1023.0)*100;// Getting the celsius value from 10 bit analog value
   lcd.clear();
   lcd.home();
   lcd.setCursor(0,0);
@@ -111,6 +111,7 @@ void loop() {
   if(control){
       Serial.println("PASSWORD:");
       control=0;
+      setLocked(true);
     }
   char code=myKeypad.getKey();
   if(code!=NO_KEY){
@@ -131,6 +132,7 @@ void loop() {
     }else{
       Serial.println("");
       Serial.println("HATALI!");
+      setLocked(true);
       pozisyon=0;
       control=1;
     }
