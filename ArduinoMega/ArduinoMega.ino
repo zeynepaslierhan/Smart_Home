@@ -80,10 +80,9 @@ void loop() {
   }
   char code=myKeypad.getKey();
   if(code!=NO_KEY){
-    for(l=0;l<1;l++){
-      Serial.print("*");
-      //keypress
-    }
+      
+    Serial.print("*");//keypress
+    
     if(code==password[pozisyon]){
       pozisyon++;
       if(pozisyon==4){
