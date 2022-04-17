@@ -1,6 +1,5 @@
 //yangın sensörü için değişkenler
 int buzzer=19;
-int pinkLed=18;
 int alev_sensoru= A0;
 boolean fl_sensorValue = 0;
 
@@ -49,7 +48,6 @@ void setup() {
 
   //yangın sensörü
   pinMode(buzzer,OUTPUT);
-  pinMode(pinkLed,OUTPUT);
   delay(10);
   
   //hareket sensörü kurulumları
@@ -72,7 +70,6 @@ void setup() {
 void loop() {
   
   //kilit sistemi
-  int l;
   if(control){
     Serial.println("PASSWORD:");
     control=0;
@@ -108,10 +105,8 @@ void loop() {
   fl_sensorValue=digitalRead(alev_sensoru);
   
   if(fl_sensorValue){
-    digitalWrite(pinkLed,HIGH);
     digitalWrite(buzzer,HIGH);
   }else{
-    digitalWrite(pinkLed,LOW);
     digitalWrite(buzzer,LOW);
   }
   
