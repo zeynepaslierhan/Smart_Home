@@ -123,13 +123,21 @@ void loop() {
   //dijital termometre için
   
   temp_sensorValue=analogRead(lm35);
-  float TempCel =temp_sensorValue*(500/1023.0);// Getting the celsius value from 10 bit analog value
-  lcd.clear();
+  float TempCel =temp_sensorValue*(500/1024.0);// Getting the celsius value from 10 bit analog value
+  
   lcd.home();
-  lcd.print("sicaklik = ");
-  lcd.setCursor(0,1);
-  lcd.print(TempCel);
+  lcd.print("Sicaklik=");
+ 
+  lcd.print(int(TempCel));
   lcd.print(" C");
+  lcd.setCursor(0,1);
+  if(TempCel<20){
+    lcd.print("Dustu");
+  }else if(TempCel>=31){
+     lcd.print("Yukseldi");
+  }else{
+     lcd.print("                     ");
+  }
   delay(100);
 }
 
