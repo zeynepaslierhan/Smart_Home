@@ -22,3 +22,8 @@ Projede Proteus programında Arduino kartı kullanarak akıllı ev sistemi oluş
 4 - https://www.youtube.com/playlist?list=PLFOSdDqm35feuJXiWzI64TAmnLJ0y29-W
 
 5 - https://www.youtube.com/watch?v=M_S2Z5XJuUE
+
+
+# Projeyi Geliştirenler
+Zeynep Aslı Erhan (https://github.com/zeynepaslierhan)
+Hazar Koç (https://github.com/hzrkc)
